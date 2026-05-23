@@ -15,9 +15,9 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
             <Image
               src="/tradeu-logo.png"
               alt="TradeU"
-              width={220}
-              height={70}
-              className="h-14 w-auto"
+              width={260}
+              height={82}
+              className="h-16 w-auto sm:h-[4.25rem]"
               priority
             />
             <div>
@@ -56,7 +56,7 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
       <footer className="border-t border-slate-200/80 bg-white/80">
         <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-10 text-sm text-muted sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
           <div className="flex items-center gap-3">
-            <Image src="/tradeu-logo.png" alt="TradeU" width={176} height={56} className="h-12 w-auto" />
+            <Image src="/tradeu-logo.png" alt="TradeU" width={220} height={70} className="h-14 w-auto" />
             <div>
             <p>Student-first skill trading built for reputation, trust, and growth.</p>
             </div>
