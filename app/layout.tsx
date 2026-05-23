@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Sora } from "next/font/google";
 import { Toaster } from "sonner";
+
+import { AuthProvider } from "@/components/providers/auth-provider";
 import "./globals.css";
 
 const inter = Inter({
@@ -41,7 +43,7 @@ export default function RootLayout({
       className={`${inter.variable} ${sora.variable} h-full scroll-smooth antialiased`}
     >
       <body className="min-h-full bg-canvas text-ink">
-        {children}
+        <AuthProvider>{children}</AuthProvider>
         <Toaster richColors position="top-right" />
       </body>
     </html>

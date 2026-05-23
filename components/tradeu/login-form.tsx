@@ -2,16 +2,19 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 
-const AUTH_CONFIRM_REDIRECT_PATH = "/auth/callback?next=/dashboard";
+const DEFAULT_APP_REDIRECT = "/dashboard";
 
 export function LoginForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const nextParam = searchParams.get("next");
+  const nextPath = nextParam?.startsWith("/") ? nextParam : DEFAULT_APP_REDIRECT;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -44,8 +47,8 @@ export function LoginForm() {
         return;
       }
 
-      toast.success("Welcome back. Redirecting to your dashboard...");
-      router.push("/dashboard");
+      toast.success("Welcome back. Redirecting to your workspace...");
+      router.push(nextPath);
       router.refresh();
     } finally {
       setIsSubmitting(false);
@@ -71,7 +74,7 @@ export function LoginForm() {
         type: "signup",
         email: email.trim(),
         options: {
-          emailRedirectTo: `${window.location.origin}${AUTH_CONFIRM_REDIRECT_PATH}`,
+          emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(nextPath)}`,
         },
       });
 
