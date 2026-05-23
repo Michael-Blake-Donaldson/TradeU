@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 import { siteNavigation } from "@/lib/constants/tradeu";
 import { PublicThemeSwitcher } from "@/components/tradeu/public-theme-switcher";
@@ -11,13 +12,15 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
       <header className="sticky top-0 z-40 border-b border-white/70 bg-white/75 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:px-8">
           <Link href="/" className="flex items-center gap-3" aria-label="TradeU home">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary text-sm font-semibold text-white shadow-lg shadow-indigo-500/20">
-              TU
-            </div>
+            <Image
+              src="/tradeu-logo.png"
+              alt="TradeU"
+              width={172}
+              height={54}
+              className="h-11 w-auto"
+              priority
+            />
             <div>
-              <p className="section-heading text-lg font-semibold tracking-tight text-ink">
-                TradeU
-              </p>
               <p className="text-sm text-muted">Trade skills. Gain experience.</p>
             </div>
           </Link>
@@ -52,9 +55,11 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
 
       <footer className="border-t border-slate-200/80 bg-white/80">
         <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-10 text-sm text-muted sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
-          <div>
-            <p className="font-medium text-ink">TradeU</p>
+          <div className="flex items-center gap-3">
+            <Image src="/tradeu-logo.png" alt="TradeU" width={132} height={40} className="h-9 w-auto" />
+            <div>
             <p>Student-first skill trading built for reputation, trust, and growth.</p>
+            </div>
           </div>
           <div className="flex flex-wrap gap-4">
             {siteNavigation.map((item) => (
