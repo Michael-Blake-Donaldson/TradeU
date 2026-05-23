@@ -130,7 +130,7 @@ export function LoginForm() {
 
       <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
         <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-600">
-          Didn't get the confirmation email?
+          Did not get the confirmation email?
         </p>
         <button
           type="button"
