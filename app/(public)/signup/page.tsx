@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { SignupForm } from "@/components/tradeu/signup-form";
 
 export default function SignupPage() {
   return (
@@ -9,17 +9,11 @@ export default function SignupPage() {
           Build a profile that shows what you study, what you offer, and what you want to learn.
         </h1>
         <p className="mt-4 text-base leading-7 text-slate-600">
-          The account creation and onboarding flow comes next, including school verification, field of
-          study theme selection, skills offered, and skills wanted.
+          Create your account to start onboarding, verify your school context, and activate your first
+          trade-ready profile.
         </p>
-        <div className="mt-8">
-          <Link
-            href="/how-it-works"
-            className="inline-flex rounded-full border border-slate-200 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
-          >
-            Review the onboarding flow
-          </Link>
-        </div>
+
+        <SignupForm />
       </section>
     </div>
   );

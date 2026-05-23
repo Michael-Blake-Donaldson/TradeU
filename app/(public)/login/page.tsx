@@ -1,3 +1,5 @@
+import { LoginForm } from "@/components/tradeu/login-form";
+
 export default function LoginPage() {
   return (
     <div className="mx-auto max-w-xl px-4 py-16 sm:px-6 lg:px-8">
@@ -7,9 +9,10 @@ export default function LoginPage() {
           Sign in to continue your student trade activity.
         </h1>
         <p className="mt-4 text-base leading-7 text-slate-600">
-          Authentication screens and Supabase integration are the next implementation milestone. This
-          route is in place so the public conversion flow is wired correctly.
+          Access your profile, active trades, and reputation progress from your dashboard.
         </p>
+
+        <LoginForm />
       </section>
     </div>
   );
