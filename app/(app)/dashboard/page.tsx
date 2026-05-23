@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
 
 import { ListingCard } from "@/components/tradeu/listing-card";
@@ -64,6 +65,21 @@ export default function DashboardPage() {
                 style={{ width: `${currentProfile.xpProgress}%` }}
               />
             </div>
+          </div>
+
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link
+              href="/listings/new"
+              className="inline-flex rounded-full bg-white px-5 py-3 text-sm font-semibold text-primary transition hover:bg-slate-100"
+            >
+              Create listing
+            </Link>
+            <Link
+              href="/trades/request"
+              className="inline-flex rounded-full border border-white/40 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+            >
+              Request trade
+            </Link>
           </div>
         </article>
 
@@ -147,10 +163,13 @@ export default function DashboardPage() {
                 </div>
                 <div className="mt-5 flex items-center justify-between gap-4">
                   <p className="text-sm text-muted">{trade.lastUpdate}</p>
-                  <button className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-200">
+                  <Link
+                    href="/trades/request"
+                    className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-200"
+                  >
                     Open trade
                     <ArrowRight className="h-4 w-4" />
-                  </button>
+                  </Link>
                 </div>
               </article>
             ))}

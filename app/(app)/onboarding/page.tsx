@@ -1,4 +1,5 @@
 import { fieldThemes, launchCategories } from "@/lib/constants/tradeu";
+import { OnboardingForm } from "@/components/tradeu/onboarding-form";
 import { schools } from "@/lib/mock/tradeu";
 
 const onboardingSteps = [
@@ -60,6 +61,10 @@ export default function OnboardingPage() {
               </div>
             </article>
           ))}
+        </div>
+
+        <div className="mt-8 rounded-[28px] border border-slate-200 p-5">
+          <OnboardingForm />
         </div>
       </section>
 
