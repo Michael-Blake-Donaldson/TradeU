@@ -8,6 +8,8 @@ import { toast } from "sonner";
 
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 
+const AUTH_CONFIRM_REDIRECT_PATH = "/auth/callback?next=/dashboard";
+
 export function SignupForm() {
   const router = useRouter();
   const [fullName, setFullName] = useState("");
@@ -50,7 +52,7 @@ export function SignupForm() {
           data: {
             full_name: fullName.trim(),
           },
-          emailRedirectTo: `${window.location.origin}/login`,
+          emailRedirectTo: `${window.location.origin}${AUTH_CONFIRM_REDIRECT_PATH}`,
         },
       });
 
@@ -72,7 +74,7 @@ export function SignupForm() {
       }
 
       toast.success("Check your email to confirm your account. Also check spam/promotions folders.");
-      router.push("/login");
+      router.push(`/check-email?email=${encodeURIComponent(email.trim())}`);
     } finally {
       setIsSubmitting(false);
     }

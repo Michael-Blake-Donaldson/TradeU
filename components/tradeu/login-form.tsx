@@ -8,6 +8,8 @@ import { toast } from "sonner";
 
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 
+const AUTH_CONFIRM_REDIRECT_PATH = "/auth/callback?next=/dashboard";
+
 export function LoginForm() {
   const router = useRouter();
   const [email, setEmail] = useState("");
@@ -69,7 +71,7 @@ export function LoginForm() {
         type: "signup",
         email: email.trim(),
         options: {
-          emailRedirectTo: `${window.location.origin}/login`,
+          emailRedirectTo: `${window.location.origin}${AUTH_CONFIRM_REDIRECT_PATH}`,
         },
       });
 
