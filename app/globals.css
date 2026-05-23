@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --line: #d9e2ec;
+  --primary: #4f46e5;
+  --primary-strong: #3730a3;
+  --secondary: #60a5fa;
+  --success: #34d399;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --muted: #64748b;
+  --hero-wash: #edf4ff;
+  --shadow-color: rgba(79, 70, 229, 0.16);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-canvas: var(--background);
+  --color-ink: var(--foreground);
+  --color-card: var(--card);
+  --color-line: var(--line);
+  --color-primary: var(--primary);
+  --color-primary-strong: var(--primary-strong);
+  --color-secondary: var(--secondary);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-muted: var(--muted);
+  --color-hero-wash: var(--hero-wash);
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-sora);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), sans-serif;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  outline-color: var(--secondary);
+}
+
+:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--secondary) 72%, white 28%);
+  outline-offset: 3px;
+}
+
+.page-shell {
+  background:
+    radial-gradient(circle at top left, rgba(96, 165, 250, 0.22), transparent 32%),
+    radial-gradient(circle at top right, rgba(52, 211, 153, 0.18), transparent 24%),
+    linear-gradient(180deg, rgba(248, 250, 252, 0.92) 0%, rgba(248, 250, 252, 1) 42%);
+}
+
+.surface {
+  background: var(--card);
+  border: 1px solid color-mix(in srgb, var(--line) 82%, white 18%);
+  box-shadow: 0 24px 60px -36px var(--shadow-color);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.grid-ambient {
+  background-image:
+    linear-gradient(rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+.section-heading {
+  font-family: var(--font-sora), sans-serif;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .fade-up {
+    animation: fade-up 0.7s ease-out both;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
