@@ -86,35 +86,27 @@ export function PublicThemeSwitcher() {
   };
 
   return (
-    <div className="hidden items-center gap-2 rounded-full border border-slate-200 bg-white px-2 py-1.5 lg:flex">
-      <span className="px-1 text-xs font-semibold uppercase tracking-[0.16em] text-muted">
-        Vibe
-      </span>
-      {PUBLIC_THEMES.map((theme) => {
-        const isActive = theme.id === activeThemeId;
-        return (
-          <button
-            key={theme.id}
-            type="button"
-            onClick={() => handleSelect(theme)}
-            className="inline-flex items-center gap-2 rounded-full px-2.5 py-1 text-xs font-semibold transition"
-            style={{
-              backgroundColor: isActive ? `${theme.primary}20` : "transparent",
-              color: isActive ? theme.primary : "#475569",
-            }}
-            aria-pressed={isActive}
-            aria-label={`Switch to ${theme.label} theme`}
-            title={theme.label}
-          >
-            <span
-              className="h-2.5 w-2.5 rounded-full"
-              style={{ backgroundColor: theme.primary }}
-              aria-hidden="true"
-            />
+    <div className="hidden items-center lg:flex">
+      <label htmlFor="theme-picker" className="sr-only">
+        Choose theme vibe
+      </label>
+      <select
+        id="theme-picker"
+        value={activeThemeId}
+        onChange={(event) => {
+          const theme = PUBLIC_THEMES.find((item) => item.id === event.target.value);
+          if (theme) {
+            handleSelect(theme);
+          }
+        }}
+        className="rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 focus:border-primary focus:outline-none"
+      >
+        {PUBLIC_THEMES.map((theme) => (
+          <option key={theme.id} value={theme.id}>
             {theme.label}
-          </button>
-        );
-      })}
+          </option>
+        ))}
+      </select>
     </div>
   );
 }

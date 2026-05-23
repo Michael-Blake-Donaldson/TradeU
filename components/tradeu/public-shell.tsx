@@ -4,6 +4,8 @@ import { siteNavigation } from "@/lib/constants/tradeu";
 import { PublicThemeSwitcher } from "@/components/tradeu/public-theme-switcher";
 
 export function PublicShell({ children }: { children: React.ReactNode }) {
+  const headerNavigation = siteNavigation.filter((item) => item.href !== "/login");
+
   return (
     <div className="page-shell min-h-screen">
       <header className="sticky top-0 z-40 border-b border-white/70 bg-white/75 backdrop-blur-xl">
@@ -21,20 +23,20 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
           </Link>
 
           <nav className="hidden items-center gap-6 text-sm font-medium text-slate-700 md:flex">
-            {siteNavigation.map((item) => (
+            {headerNavigation.map((item) => (
               <Link key={item.href} href={item.href} className="transition hover:text-primary">
                 {item.label}
               </Link>
             ))}
           </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <PublicThemeSwitcher />
             <Link
-              href="/waitlist"
-              className="hidden rounded-full border border-slate-200 px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-primary hover:text-primary sm:inline-flex"
+              href="/login"
+              className="hidden px-2 py-2 text-sm font-medium text-slate-700 transition hover:text-primary sm:inline-flex"
             >
-              Join waitlist
+              Log in
             </Link>
             <Link
               href="/signup"
