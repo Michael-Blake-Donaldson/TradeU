@@ -55,6 +55,11 @@ export function SignupForm() {
       });
 
       if (error) {
+        if (error.message.toLowerCase().includes("invalid")) {
+          toast.error("That email looks invalid. Double-check for typos and use your full school address.");
+          return;
+        }
+
         toast.error(error.message);
         return;
       }
@@ -66,7 +71,7 @@ export function SignupForm() {
         return;
       }
 
-      toast.success("Check your email to confirm your account, then log in.");
+      toast.success("Check your email to confirm your account. Also check spam/promotions folders.");
       router.push("/login");
     } finally {
       setIsSubmitting(false);
@@ -141,6 +146,10 @@ export function SignupForm() {
         <Link href="/login" className="font-semibold text-primary hover:text-primary-strong">
           Log in
         </Link>
+      </p>
+
+      <p className="text-center text-xs text-slate-500">
+        If your project has email confirmations enabled, we will send a verification email after signup.
       </p>
     </form>
   );

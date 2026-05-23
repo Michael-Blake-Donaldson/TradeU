@@ -13,6 +13,7 @@ export function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isResending, setIsResending] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -46,6 +47,40 @@ export function LoginForm() {
       router.refresh();
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const handleResendConfirmation = async () => {
+    if (!email.trim()) {
+      toast.error("Enter your email first so we can resend confirmation.");
+      return;
+    }
+
+    const supabase = createSupabaseBrowserClient();
+    if (!supabase) {
+      toast.error("Supabase is not configured. Add client env vars and try again.");
+      return;
+    }
+
+    try {
+      setIsResending(true);
+
+      const { error } = await supabase.auth.resend({
+        type: "signup",
+        email: email.trim(),
+        options: {
+          emailRedirectTo: `${window.location.origin}/login`,
+        },
+      });
+
+      if (error) {
+        toast.error(error.message);
+        return;
+      }
+
+      toast.success("Confirmation email sent. Check inbox and spam/promotions folders.");
+    } finally {
+      setIsResending(false);
     }
   };
 
@@ -92,6 +127,20 @@ export function LoginForm() {
           Join TradeU
         </Link>
       </p>
+
+      <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
+        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-600">
+          Didn't get the confirmation email?
+        </p>
+        <button
+          type="button"
+          onClick={handleResendConfirmation}
+          disabled={isResending}
+          className="mt-2 text-sm font-semibold text-primary transition hover:text-primary-strong disabled:cursor-not-allowed disabled:opacity-70"
+        >
+          {isResending ? "Resending..." : "Resend confirmation"}
+        </button>
+      </div>
     </form>
   );
 }
