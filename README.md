@@ -65,9 +65,24 @@ npm run test:e2e
 
 1. Create a Supabase project.
 2. Add the keys from `.env.example` to `.env.local` and Vercel.
-3. Run the SQL migration in [supabase/migrations/20260522_001_initial_tradeu_schema.sql](supabase/migrations/20260522_001_initial_tradeu_schema.sql).
-4. Confirm Row Level Security is enabled for all exposed tables.
-5. Wire the current mock domain reads and writes to Supabase server actions and route handlers.
+3. Set `DATABASE_URL` in `.env.local` using your Supabase Postgres connection string.
+4. Run database migrations locally:
+
+```bash
+npm run db:migrate
+```
+
+5. Seed baseline schools and skills:
+
+```bash
+npm run db:seed
+```
+
+6. If you want to apply only one file manually, use the SQL Editor with:
+	- [supabase/migrations/20260522_001_initial_tradeu_schema.sql](supabase/migrations/20260522_001_initial_tradeu_schema.sql)
+	- [supabase/migrations/20260523_002_seed_core_data.sql](supabase/migrations/20260523_002_seed_core_data.sql)
+7. Confirm Row Level Security is enabled for all exposed tables.
+8. Wire the current mock domain reads and writes to Supabase server actions and route handlers.
 
 ## Deployment
 
