@@ -219,3 +219,97 @@ export const badgeCallouts = [
     body: "Badges, school context, and structured reviews make the marketplace legible from the first click.",
   },
 ];
+
+export const degreeIdentity = [
+  { key: "tech", label: "Tech", color: "#2563EB" },
+  { key: "design", label: "Design", color: "#7C3AED" },
+  { key: "health", label: "Health", color: "#0D9488" },
+  { key: "business", label: "Business", color: "#D97706" },
+  { key: "creative", label: "Creative", color: "#DC2626" },
+  { key: "engineering", label: "Engineering", color: "#EA580C" },
+];
+
+export const discoverSignals = [
+  {
+    title: "Skill-to-skill trades",
+    detail: "Swap a capability directly when both students need each other this week.",
+    metric: "42% of weekly matches",
+  },
+  {
+    title: "Hybrid exchanges",
+    detail: "Combine credits and direct collaboration when scope is uneven.",
+    metric: "31% of weekly matches",
+  },
+  {
+    title: "Credit-first requests",
+    detail: "Use credits when you need speed and clear delivery windows.",
+    metric: "27% of weekly matches",
+  },
+];
+
+export const studentSpotlights = [
+  {
+    name: "Nia F.",
+    degree: "Computer Science",
+    headline: "Traded UI tutoring for mobile bug triage and landed an app internship.",
+    trust: "Verified + 18 successful exchanges",
+  },
+  {
+    name: "Adrian K.",
+    degree: "Design",
+    headline: "Built a campus brand kit by trading logo work for analytics mentoring.",
+    trust: "5.0 rating across 12 collaborations",
+  },
+  {
+    name: "Mara S.",
+    degree: "Health Sciences",
+    headline: "Exchanged study coaching for portfolio photography before grad applications.",
+    trust: "Low dispute rate + fast response",
+  },
+];
+
+export const collaborationActivity = [
+  {
+    lane: "Design -> Business",
+    action: "Pitch deck refresh traded for campaign analytics setup",
+    time: "3m ago",
+  },
+  {
+    lane: "Engineering -> Creative",
+    action: "Landing page build exchanged for short-form content editing",
+    time: "11m ago",
+  },
+  {
+    lane: "Tech -> Health",
+    action: "Data dashboard support traded for wellness coaching plan",
+    time: "19m ago",
+  },
+  {
+    lane: "Business -> Design",
+    action: "Sales script polish exchanged for social visuals",
+    time: "27m ago",
+  },
+];
+
+export const communityStatsExpanded = [
+  {
+    label: "Active schools",
+    value: "21",
+    context: "Students currently collaborating from verified campus communities",
+  },
+  {
+    label: "Weekly collaboration flows",
+    value: "1,480+",
+    context: "Documented request-to-completion exchanges this month",
+  },
+  {
+    label: "Resolved with no dispute",
+    value: "96.4%",
+    context: "Trust mechanisms holding quality and fairness across lanes",
+  },
+  {
+    label: "Portfolio-ready outcomes",
+    value: "3,200+",
+    context: "Deliverables students can showcase in internship and job cycles",
+  },
+];
