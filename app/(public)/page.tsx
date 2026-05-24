@@ -1,12 +1,25 @@
 import Link from "next/link";
-import { ArrowRight, BadgeCheck, Search, Shield, Star, TrendingUp } from "lucide-react";
+import {
+  ArrowRight,
+  BadgeCheck,
+  CircleDot,
+  MoveRight,
+  Search,
+  Shield,
+  Star,
+  TrendingUp,
+} from "lucide-react";
 
 import {
-  howItWorksSteps,
+  collaborationActivity,
+  communityStatsExpanded,
+  degreeIdentity,
+  discoverSignals,
   launchCategories,
+  howItWorksSteps,
   socialProof,
+  studentSpotlights,
   trustHighlights,
-  waitlistStats,
 } from "@/lib/constants/tradeu";
 
 const featuredSearches = [
@@ -45,226 +58,280 @@ const featuredGigs = [
 export default function HomePage() {
   return (
     <div className="pb-20">
-      <section className="grid-ambient overflow-hidden border-b border-slate-200/80 bg-white/70">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-20">
-          <div className="fade-up space-y-8">
-            <div className="inline-flex w-fit items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm">
-              <BadgeCheck className="h-4 w-4 text-secondary" />
-              Verified students. Real outcomes. No resume fluff.
-            </div>
-
-            <div className="space-y-5">
-              <h1 className="section-heading max-w-3xl text-balance text-5xl font-semibold tracking-tight text-ink sm:text-6xl">
-                Find student talent fast,
-                <span className="text-primary"> trade your way.</span>
-              </h1>
-              <p className="max-w-2xl text-lg leading-8 text-slate-600">
-                TradeU is a student marketplace where every exchange builds trust,
-                reputation, and portfolio proof through direct trades, credits, or hybrid deals.
-              </p>
-            </div>
-
-            <div className="surface rounded-[28px] p-3">
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                <label htmlFor="skill-search" className="sr-only">
-                  Search skills
-                </label>
-                <div className="flex flex-1 items-center gap-2 rounded-2xl border border-slate-200 bg-white px-3 py-3">
-                  <Search className="h-4 w-4 text-muted" />
-                  <input
-                    id="skill-search"
-                    type="text"
-                    placeholder="What do you need help with?"
-                    className="w-full bg-transparent text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none"
-                    readOnly
-                  />
-                </div>
-                <Link
-                  href="/signup"
-                  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-primary px-5 py-3 text-sm font-semibold text-white transition hover:bg-primary-strong"
-                >
-                  Start trading
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
+      <section className="path-network border-b border-slate-200/70 bg-white/78">
+        <div className="mx-auto w-full max-w-[1600px] px-4 py-12 sm:px-6 lg:px-10 lg:py-16">
+          <div className="relative z-10 grid gap-7 lg:grid-cols-[1.18fr_0.82fr]">
+            <div className="fade-up space-y-7">
+              <div className="inline-flex w-fit items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate-700">
+                <BadgeCheck className="h-4 w-4 text-secondary" />
+                Verified campus collaboration
               </div>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {featuredSearches.map((term) => (
-                  <span
-                    key={term}
-                    className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-600"
+
+              <h1 className="type-display max-w-5xl text-balance font-semibold text-ink">
+                A modern campus ecosystem where opportunity is moving around you.
+              </h1>
+
+              <p className="type-subtitle max-w-3xl text-slate-700">
+                TradeU connects students through trusted exchanges, not generic gigs. Every request creates movement
+                between skills, proof of work, and reputation.
+              </p>
+
+              <div className="surface rounded-[28px] p-3">
+                <div className="flex flex-col gap-3 md:flex-row md:items-center">
+                  <label htmlFor="skill-search" className="sr-only">
+                    Search skills
+                  </label>
+                  <div className="flex flex-1 items-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-3">
+                    <Search className="h-4 w-4 text-muted" />
+                    <input
+                      id="skill-search"
+                      type="text"
+                      placeholder="What skill flow are you joining today?"
+                      className="w-full bg-transparent text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none"
+                      readOnly
+                    />
+                  </div>
+                  <Link
+                    href="/signup"
+                    className="inline-flex items-center justify-center gap-2 rounded-2xl bg-primary px-6 py-3 text-sm font-semibold text-white transition hover:bg-primary-strong"
                   >
-                    {term}
+                    Enter TradeU
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {featuredSearches.map((term) => (
+                    <span key={term} className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-600">
+                      {term}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-2">
+                {degreeIdentity.map((identity) => (
+                  <span
+                    key={identity.key}
+                    className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold"
+                    style={{
+                      color: identity.color,
+                      backgroundColor: `${identity.color}18`,
+                      border: `1px solid ${identity.color}40`,
+                    }}
+                  >
+                    <CircleDot className="h-3.5 w-3.5" />
+                    {identity.label}
                   </span>
                 ))}
               </div>
             </div>
 
-            <div className="grid gap-3 sm:grid-cols-3">
-              {waitlistStats.map((item) => (
-                <div key={item.label} className="surface rounded-2xl px-4 py-4">
-                  <p className="section-heading text-2xl font-semibold text-ink">{item.value}</p>
-                  <p className="mt-1 text-xs font-medium uppercase tracking-[0.14em] text-muted">
-                    {item.label}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="fade-up flex items-center lg:justify-end">
-            <div className="surface w-full rounded-[30px] p-5 sm:p-6">
-              <div className="mb-4 flex items-center justify-between">
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-                  Trending trades
-                </p>
-                <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">
-                  <TrendingUp className="h-3.5 w-3.5" />
-                  +26% this week
-                </span>
-              </div>
-              <div className="space-y-3">
+            <aside className="fade-up surface-dark path-drift rounded-[32px] p-6 sm:p-7">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-200">Ecosystem pulse</p>
+              <p className="mt-3 text-3xl font-semibold leading-tight text-white">
+                Collaboration pathways are active across majors every hour.
+              </p>
+              <div className="mt-6 space-y-3">
                 {featuredGigs.map((gig) => (
-                  <article key={gig.title} className="rounded-2xl border border-slate-200 bg-white p-4">
-                    <h3 className="section-heading text-lg font-semibold text-ink">{gig.title}</h3>
-                    <p className="mt-1 text-sm text-slate-600">{gig.provider}</p>
-                    <div className="mt-3 flex flex-wrap items-center gap-3 text-xs font-semibold text-slate-600">
-                      <span className="inline-flex items-center gap-1 text-amber-500">
+                  <article key={gig.title} className="rounded-2xl border border-white/15 bg-white/5 px-4 py-4">
+                    <h3 className="text-base font-semibold text-white">{gig.title}</h3>
+                    <p className="mt-1 text-sm text-slate-300">{gig.provider}</p>
+                    <div className="mt-2 flex flex-wrap items-center gap-3 text-xs font-semibold text-slate-300">
+                      <span className="inline-flex items-center gap-1 text-amber-300">
                         <Star className="h-3.5 w-3.5 fill-current" />
                         {gig.rating}
                       </span>
                       <span>{gig.volume}</span>
-                      <span className="rounded-full bg-hero-wash px-2.5 py-1 text-primary">
-                        {gig.price}
-                      </span>
+                      <span className="rounded-full bg-white/10 px-2 py-1">{gig.price}</span>
                     </div>
                   </article>
                 ))}
               </div>
-            </div>
+              <div className="mt-4 inline-flex items-center gap-1 rounded-full bg-emerald-300/15 px-3 py-1 text-xs font-semibold text-emerald-200">
+                <TrendingUp className="h-3.5 w-3.5" />
+                26% more collaborative matches this week
+              </div>
+            </aside>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        <div className="mb-8 flex items-end justify-between gap-4">
+      <section className="mx-auto w-full max-w-[1600px] px-4 py-14 sm:px-6 lg:px-10">
+        <div className="grid gap-8 lg:grid-cols-[1.08fr_0.92fr]">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-              Browse by category
-            </p>
-            <h2 className="section-heading mt-2 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-              Marketplace lanes built for student-to-student value.
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">Discover zone</p>
+            <h2 className="type-section mt-2 max-w-4xl font-semibold text-ink">
+              Discover how value moves between students before a single message is sent.
             </h2>
+            <div className="mt-6 space-y-3">
+              {discoverSignals.map((signal) => (
+                <div key={signal.title} className="surface-soft rounded-[24px] px-5 py-5">
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                      <p className="text-lg font-semibold text-ink">{signal.title}</p>
+                      <p className="mt-1 text-sm leading-7 text-slate-600">{signal.detail}</p>
+                    </div>
+                    <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-primary">{signal.metric}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
 
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {launchCategories.map((category) => {
-            const Icon = category.icon;
-            return (
-              <article key={category.key} className="surface rounded-[28px] p-6">
-                <div className="flex items-start justify-between gap-3">
-                  <span
-                    className="inline-flex h-11 w-11 items-center justify-center rounded-2xl"
-                    style={{ backgroundColor: `${category.accent}20`, color: category.accent }}
+          <div className="surface rounded-[30px] p-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">Explore skill lanes</p>
+            <div className="mt-4 space-y-2">
+              {launchCategories.map((category) => {
+                const Icon = category.icon;
+                return (
+                  <div
+                    key={category.key}
+                    className="flex items-center justify-between rounded-2xl border border-slate-200 px-4 py-3 transition hover:border-primary/30"
                   >
-                    <Icon className="h-5 w-5" />
-                  </span>
-                  <span className="rounded-full border border-slate-200 px-3 py-1 text-xs font-semibold text-slate-600">
-                    Popular
-                  </span>
-                </div>
-                <h3 className="section-heading mt-5 text-xl font-semibold text-ink">{category.name}</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-600">{category.description}</p>
-                {category.safetyNote ? (
-                  <p className="mt-3 text-xs font-semibold uppercase tracking-[0.12em] text-amber-700">
-                    {category.safetyNote}
-                  </p>
-                ) : null}
-              </article>
-            );
-          })}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="surface rounded-[30px] bg-slate-950 p-8 text-white">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-sky-200">
-              Trust and security
-            </p>
-            <h2 className="section-heading mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
-              Structured by default so both students can trade with confidence.
-            </h2>
-            <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              {trustHighlights.map((highlight) => (
-                <div key={highlight} className="rounded-2xl bg-white/10 px-4 py-4 text-sm leading-6 text-slate-100">
-                  {highlight}
-                </div>
-              ))}
-            </div>
-            <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-emerald-400/15 px-4 py-2 text-sm font-semibold text-emerald-200">
-              <Shield className="h-4 w-4" />
-              Moderation + dispute support included from day one.
-            </div>
-          </div>
-
-          <div className="surface rounded-[30px] p-8">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-              How it works
-            </p>
-            <div className="mt-4 space-y-3">
-              {howItWorksSteps.map((step, index) => (
-                <div key={step} className="flex gap-3 rounded-2xl border border-slate-200 px-4 py-4">
-                  <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-semibold text-white">
-                    {index + 1}
-                  </span>
-                  <p className="text-sm leading-6 text-slate-700">{step}</p>
-                </div>
-              ))}
+                    <div className="flex items-center gap-3">
+                      <span
+                        className="inline-flex h-9 w-9 items-center justify-center rounded-xl"
+                        style={{ backgroundColor: `${category.accent}20`, color: category.accent }}
+                      >
+                        <Icon className="h-4 w-4" />
+                      </span>
+                      <div>
+                        <p className="text-sm font-semibold text-ink">{category.name}</p>
+                        <p className="text-xs text-slate-600">{category.description}</p>
+                      </div>
+                    </div>
+                    <MoveRight className="h-4 w-4 text-slate-500" />
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        <div className="grid gap-4 md:grid-cols-3">
-          {socialProof.map((story) => (
-            <blockquote key={story.name} className="surface rounded-[26px] p-6">
-              <p className="text-base leading-7 text-slate-700">“{story.quote}”</p>
-              <footer className="mt-4 text-sm text-muted">
-                <span className="font-semibold text-ink">{story.name}</span>
-                <span> · {story.role}</span>
-              </footer>
-            </blockquote>
+      <section className="mx-auto w-full max-w-[1600px] px-4 py-14 sm:px-6 lg:px-10">
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">Student spotlight</p>
+        <h2 className="type-section mt-2 max-w-4xl font-semibold text-ink">
+          Identity surfaces built around trust, outcomes, and collaboration momentum.
+        </h2>
+
+        <div className="mt-7 space-y-3">
+          {studentSpotlights.map((student, index) => (
+            <article key={student.name} className="surface rounded-[30px] px-5 py-5 sm:px-7">
+              <div className="grid gap-4 md:grid-cols-[0.34fr_0.66fr] md:items-center">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">Student {index + 1}</p>
+                  <p className="mt-2 text-2xl font-semibold text-ink">{student.name}</p>
+                  <p className="text-sm text-slate-600">{student.degree}</p>
+                </div>
+                <div>
+                  <p className="text-lg font-semibold text-ink">{student.headline}</p>
+                  <p className="mt-2 text-sm font-medium text-emerald-700">{student.trust}</p>
+                </div>
+              </div>
+            </article>
           ))}
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <div className="surface rounded-[34px] bg-gradient-to-r from-primary to-primary-strong px-8 py-10 text-white sm:px-10">
-          <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-2xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/80">
-                Launch call
-              </p>
-              <h2 className="section-heading mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
-                Join TradeU and turn your campus skills into real experience currency.
+      <section className="mx-auto w-full max-w-[1600px] px-4 py-14 sm:px-6 lg:px-10">
+        <div className="grid gap-6 lg:grid-cols-[0.92fr_1.08fr]">
+          <div className="surface-dark rounded-[32px] p-7">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-200">Collaboration activity</p>
+            <h2 className="mt-3 text-3xl font-semibold leading-tight text-white">
+              Live flows between disciplines, documented with trust checkpoints.
+            </h2>
+            <div className="mt-5 space-y-2 text-sm text-slate-300">
+              {trustHighlights.map((item) => (
+                <p key={item} className="inline-flex items-center gap-2">
+                  <Shield className="h-4 w-4 text-emerald-300" />
+                  {item}
+                </p>
+              ))}
+            </div>
+          </div>
+
+          <div className="surface rounded-[32px] p-6">
+            <div className="space-y-2">
+              {collaborationActivity.map((entry, index) => (
+                <div key={`${entry.lane}-${entry.time}`} className="flex gap-3 rounded-2xl border border-slate-200 px-4 py-4">
+                  <div className="flex flex-col items-center pt-0.5">
+                    <span className="h-3 w-3 rounded-full bg-primary" />
+                    {index < collaborationActivity.length - 1 ? (
+                      <span className="mt-1 h-10 w-px bg-slate-200" />
+                    ) : null}
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-primary">{entry.lane}</p>
+                    <p className="mt-1 text-sm leading-7 text-slate-700">{entry.action}</p>
+                    <p className="mt-1 text-xs text-muted">{entry.time}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-4 rounded-2xl bg-slate-100 px-4 py-3 text-sm text-slate-700">
+              4.9/5 average trust rating from post-trade feedback this week.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-[1600px] px-4 py-14 sm:px-6 lg:px-10">
+        <div className="surface rounded-[34px] p-8 sm:p-10">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">Community stats</p>
+              <h2 className="type-section mt-2 max-w-3xl font-semibold text-ink">
+                Trust is measurable when the ecosystem is designed for collaborative outcomes.
               </h2>
             </div>
-            <div className="flex flex-col gap-3 sm:flex-row">
+            <div className="inline-flex gap-3">
               <Link
                 href="/signup"
-                className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-primary transition hover:bg-slate-100"
+                className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white transition hover:bg-primary-strong"
               >
-                Create profile
+                Build your profile
               </Link>
               <Link
-                href="/waitlist"
-                className="inline-flex items-center justify-center rounded-full border border-white/40 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+                href="/how-it-works"
+                className="inline-flex items-center justify-center rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:border-primary/40 hover:text-primary"
               >
-                Join waitlist
+                Learn the flow
               </Link>
             </div>
+          </div>
+
+          <div className="mt-7 grid gap-3 md:grid-cols-2">
+            {communityStatsExpanded.map((item) => (
+              <div key={item.label} className="surface-soft rounded-[24px] px-5 py-5">
+                <p className="section-heading text-4xl font-semibold text-ink">{item.value}</p>
+                <p className="mt-2 text-sm font-semibold text-slate-700">{item.label}</p>
+                <p className="mt-1 text-sm leading-6 text-slate-600">{item.context}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-7 grid gap-3 lg:grid-cols-2">
+            {howItWorksSteps.map((step, index) => (
+              <div key={step} className="rounded-2xl border border-slate-200 bg-white px-4 py-4 text-sm leading-6 text-slate-700">
+                <span className="mr-2 inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary text-xs font-semibold text-white">
+                  {index + 1}
+                </span>
+                {step}
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 grid gap-3 lg:grid-cols-3">
+            {socialProof.map((story) => (
+              <blockquote key={story.name} className="rounded-2xl border border-slate-200 bg-white px-4 py-4 text-sm text-slate-700">
+                <p>{`"${story.quote}"`}</p>
+                <footer className="mt-3 text-xs text-muted">
+                  <span className="font-semibold text-ink">{story.name}</span>
+                  <span>{` • ${story.role}`}</span>
+                </footer>
+              </blockquote>
+            ))}
           </div>
         </div>
       </section>
