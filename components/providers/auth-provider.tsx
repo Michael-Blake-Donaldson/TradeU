@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import type { Session, User } from "@supabase/supabase-js";
 
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
+import type { ThemeKey } from "@/lib/constants/tradeu";
 import type { TierKey, VerificationStatus } from "@/lib/types/tradeu";
 
 export type AuthStatus = "loading" | "authenticated" | "unauthenticated";
@@ -21,7 +22,7 @@ export type AuthProfile = {
   userId: string;
   displayName: string;
   fieldOfStudy: string;
-  themeKey: string;
+  themeKey: ThemeKey;
   tier: TierKey;
   verificationStatus: VerificationStatus;
 };
@@ -45,7 +46,7 @@ type ProfileRow = {
   user_id: string;
   display_name: string;
   field_of_study: string;
-  theme_key: string;
+  theme_key: ThemeKey;
   tier: TierKey;
   verification_status: VerificationStatus;
 };

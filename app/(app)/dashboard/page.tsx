@@ -1,57 +1,72 @@
-import Link from "next/link";
-import { ArrowRight, Sparkles } from "lucide-react";
+"use client";
 
+import Link from "next/link";
+import { ArrowRight, CircleDot, MoveRight, Sparkles } from "lucide-react";
+
+import { useAuth } from "@/hooks/use-auth";
 import { ListingCard } from "@/components/tradeu/listing-card";
 import { TradeStatusBadge, VerificationBadge } from "@/components/tradeu/status-badge";
 import { currentProfile, dashboardChecklist, activeTrades, recommendedListings } from "@/lib/mock/tradeu";
 import { fieldThemes } from "@/lib/constants/tradeu";
 
 export default function DashboardPage() {
-  const theme = fieldThemes[currentProfile.themeKey];
+  const { profile, user } = useAuth();
+  const dashboardProfile = {
+    name: profile?.displayName ?? currentProfile.name,
+    fieldOfStudy: profile?.fieldOfStudy ?? currentProfile.fieldOfStudy,
+    themeKey: profile?.themeKey ?? currentProfile.themeKey,
+    verificationStatus: profile?.verificationStatus ?? currentProfile.verificationStatus,
+    tier: profile?.tier ?? currentProfile.tier,
+    schoolName: currentProfile.school.name,
+  };
+  const theme = fieldThemes[dashboardProfile.themeKey];
 
   return (
     <div className="grid gap-6">
-      <section className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
+      <section className="grid gap-6 xl:grid-cols-[1.12fr_0.88fr]">
         <article
-          className="surface rounded-[32px] p-8"
+          className="surface path-network rounded-[34px] p-8"
           style={{ background: `linear-gradient(135deg, ${theme.accent}22, white 58%)` }}
         >
-          <div className="flex flex-wrap items-start justify-between gap-6">
+          <div className="relative z-10 flex flex-wrap items-start justify-between gap-6">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
                 Welcome back
               </p>
-              <h2 className="section-heading mt-3 text-3xl font-semibold text-ink">
-                {currentProfile.name}
+              <h2 className="section-heading mt-3 text-4xl font-semibold text-ink sm:text-5xl">
+                {dashboardProfile.name}
               </h2>
               <p className="mt-2 text-base text-slate-600">
-                {currentProfile.fieldOfStudy} · {currentProfile.school.name}
+                {dashboardProfile.fieldOfStudy} · {dashboardProfile.schoolName}
+              </p>
+              <p className="mt-2 text-xs font-medium uppercase tracking-[0.14em] text-muted">
+                {user?.email ?? "Email unavailable"}
               </p>
             </div>
             <div className="flex flex-wrap gap-2">
-              <VerificationBadge status={currentProfile.verificationStatus} />
+              <VerificationBadge status={dashboardProfile.verificationStatus} />
               <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-700">
-                {currentProfile.tier}
+                {dashboardProfile.tier}
               </span>
             </div>
           </div>
 
-          <div className="mt-8 grid gap-4 sm:grid-cols-3">
-            <div className="rounded-[24px] bg-white px-5 py-5">
+          <div className="relative z-10 mt-8 grid gap-4 sm:grid-cols-3">
+            <div className="surface-soft rounded-[24px] px-5 py-5">
               <p className="text-sm text-muted">Credit balance</p>
               <p className="mt-2 text-3xl font-semibold text-ink">{currentProfile.credits}</p>
             </div>
-            <div className="rounded-[24px] bg-white px-5 py-5">
+            <div className="surface-soft rounded-[24px] px-5 py-5">
               <p className="text-sm text-muted">Completed trades</p>
               <p className="mt-2 text-3xl font-semibold text-ink">{currentProfile.completedTrades}</p>
             </div>
-            <div className="rounded-[24px] bg-white px-5 py-5">
+            <div className="surface-soft rounded-[24px] px-5 py-5">
               <p className="text-sm text-muted">Rating</p>
               <p className="mt-2 text-3xl font-semibold text-ink">{currentProfile.rating.toFixed(1)}</p>
             </div>
           </div>
 
-          <div className="mt-8 rounded-[24px] bg-slate-950 px-5 py-5 text-white">
+          <div className="relative z-10 mt-8 rounded-[24px] bg-slate-950 px-5 py-5 text-white">
             <div className="flex items-center justify-between gap-4">
               <div>
                 <p className="text-sm text-slate-300">Experience progress</p>
@@ -67,18 +82,20 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="relative z-10 mt-6 flex flex-wrap gap-3">
             <Link
               href="/listings/new"
-              className="inline-flex rounded-full bg-white px-5 py-3 text-sm font-semibold text-primary transition hover:bg-slate-100"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-primary transition hover:bg-slate-100"
             >
               Create listing
+              <MoveRight className="h-4 w-4" />
             </Link>
             <Link
               href="/trades/request"
-              className="inline-flex rounded-full border border-white/40 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+              className="inline-flex items-center gap-2 rounded-full border border-white/40 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
             >
               Request trade
+              <MoveRight className="h-4 w-4" />
             </Link>
           </div>
         </article>
@@ -99,8 +116,11 @@ export default function DashboardPage() {
           </div>
           <div className="mt-6 grid gap-3">
             {dashboardChecklist.map((item) => (
-              <div key={item.id} className="flex items-center justify-between rounded-[24px] bg-slate-50 px-4 py-4">
-                <span className="text-sm font-medium text-slate-700">{item.label}</span>
+              <div key={item.id} className="surface-soft flex items-center justify-between rounded-[24px] px-4 py-4">
+                <span className="inline-flex items-center gap-2 text-sm font-medium text-slate-700">
+                  <CircleDot className="h-4 w-4 text-primary" />
+                  {item.label}
+                </span>
                 <span
                   className={`rounded-full px-3 py-1 text-xs font-semibold ${
                     item.complete ? "bg-emerald-100 text-emerald-700" : "bg-amber-100 text-amber-800"
@@ -114,7 +134,7 @@ export default function DashboardPage() {
         </article>
       </section>
 
-      <section className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
+      <section className="grid gap-6 xl:grid-cols-[1.08fr_0.92fr]">
         <article className="surface rounded-[32px] p-8">
           <div className="flex items-end justify-between gap-4">
             <div>
@@ -133,9 +153,9 @@ export default function DashboardPage() {
           </div>
         </article>
 
-        <article className="surface rounded-[32px] p-8">
+        <article className="surface path-network rounded-[32px] p-8">
           <div className="flex items-end justify-between gap-4">
-            <div>
+            <div className="relative z-10">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
                 Active trades
               </p>
@@ -145,9 +165,9 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          <div className="mt-6 grid gap-4">
+          <div className="relative z-10 mt-6 grid gap-4">
             {activeTrades.map((trade) => (
-              <article key={trade.id} className="rounded-[28px] border border-slate-200 px-5 py-5">
+              <article key={trade.id} className="surface-soft rounded-[28px] px-5 py-5">
                 <div className="flex flex-wrap items-center justify-between gap-4">
                   <div>
                     <h3 className="section-heading text-xl font-semibold text-ink">{trade.listingTitle}</h3>
