@@ -3,7 +3,6 @@ import Image from "next/image";
 import { ArrowUpRight, CircleCheckBig, ShieldCheck } from "lucide-react";
 
 import { siteNavigation } from "@/lib/constants/tradeu";
-import { PublicThemeSwitcher } from "@/components/tradeu/public-theme-switcher";
 
 export function PublicShell({ children }: { children: React.ReactNode }) {
   const headerNavigation = siteNavigation.filter((item) => item.href !== "/login" && item.href !== "/signup");
@@ -16,11 +15,11 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
             <div className="relative z-10 flex flex-wrap items-center justify-between gap-4">
               <Link href="/" className="flex min-w-0 items-center gap-3" aria-label="TradeU home">
                 <Image
-                  src="/tradeu-logo.png"
+                  src="/TradeULogo.png"
                   alt="TradeU"
-                  width={260}
-                  height={82}
-                  className="h-14 w-auto sm:h-16"
+                  width={420}
+                  height={133}
+                  className="h-14 w-auto shrink-0 object-contain sm:h-16 lg:h-20"
                   priority
                 />
                 <div className="hidden sm:block">
@@ -42,7 +41,6 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
               </nav>
 
               <div className="flex items-center gap-2 sm:gap-3">
-                <PublicThemeSwitcher />
                 <Link
                   href="/login"
                   className="hidden rounded-full px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-white sm:inline-flex"
@@ -69,7 +67,13 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
           <div className="surface rounded-[34px] px-6 py-8 sm:px-8">
             <div className="grid gap-7 lg:grid-cols-[1.15fr_0.85fr]">
               <div className="space-y-4">
-                <Image src="/tradeu-logo.png" alt="TradeU" width={220} height={70} className="h-14 w-auto" />
+                <Image
+                  src="/TradeULogo.png"
+                  alt="TradeU"
+                  width={380}
+                  height={121}
+                  className="h-16 w-auto object-contain sm:h-20"
+                />
                 <p className="max-w-xl text-base leading-7 text-slate-700">
                   TradeU is a modern campus ecosystem where students exchange real skills, build trusted proof of work,
                   and grow before graduation.

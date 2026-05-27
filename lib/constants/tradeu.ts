@@ -151,6 +151,15 @@ export const fieldThemes: Record<
   },
 };
 
+export const categoryThemeMap: Record<CategoryKey, ThemeKey> = {
+  tutoring: "education",
+  "career-help": "business",
+  fitness: "health",
+  design: "design",
+  music: "music",
+  photography: "media",
+};
+
 export const socialProof = [
   {
     quote:
