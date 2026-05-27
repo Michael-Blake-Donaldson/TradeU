@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight,
   BadgeCheck,
@@ -210,10 +211,25 @@ export default function HomePage() {
       </section>
 
       <section className="mx-auto w-full max-w-[1600px] px-4 py-14 sm:px-6 lg:px-10">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">Student spotlight</p>
-        <h2 className="type-section mt-2 max-w-4xl font-semibold text-ink">
-          Identity surfaces built around trust, outcomes, and collaboration momentum.
-        </h2>
+        <div className="grid gap-6 lg:grid-cols-[1.08fr_0.92fr] lg:items-end">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">Student spotlight</p>
+            <h2 className="type-section mt-2 max-w-4xl font-semibold text-ink">
+              Identity surfaces built around trust, outcomes, and collaboration momentum.
+            </h2>
+          </div>
+
+          <figure className="surface-soft overflow-hidden rounded-[30px] border border-slate-200/70">
+            <Image
+              src="/herosection.png"
+              alt="Two students collaborating on guitar practice in a campus home setting"
+              width={1152}
+              height={768}
+              className="h-56 w-full object-cover sm:h-64 lg:h-72"
+              priority={false}
+            />
+          </figure>
+        </div>
 
         <div className="mt-7 space-y-3">
           {studentSpotlights.map((student, index) => (
